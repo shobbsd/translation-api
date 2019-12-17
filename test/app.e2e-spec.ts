@@ -47,7 +47,7 @@ describe('AppController (e2e)', () => {
           });
         });
     });
-    describe('', () => {
+    describe('/ERRORS', () => {
       it('POST:400, returns an error regarding incorrectly formatted body (from)', () => {
         return request(app.getHttpServer())
           .post('/api/translate')
