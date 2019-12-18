@@ -16,5 +16,5 @@ export class TranslationResponse {
       },
     },
   })
-  translations: { translation: string }[];
+  translations: Array<{ translation: string }>;
 }

@@ -11,5 +11,5 @@ export class LanguagesReponse {
       },
     },
   })
-  languages: { language: string; name: string }[];
+  languages: Array<{ language: string; name: string }>;
 }

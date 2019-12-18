@@ -37,9 +37,6 @@ export class WatsonService {
 
     return this.languageTranslator
       .translate(translateParams)
-      .then(translationResult => translationResult.result)
-      .catch(err => {
-        console.log('error:', err);
-      });
+      .then(translationResult => translationResult.result);
   }
 }

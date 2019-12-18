@@ -13,6 +13,9 @@ EXPOSE 3000
 ARG apikey
 ENV apikey=$apikey
 
+ARG PORT
+ENV PORT=$PORT
+
 ARG url
 ENV url=$url
 
