@@ -21,3 +21,5 @@ jobs:
           npm test
         env:
           CI: true
+          apikey: ${{secrets.API_KEY}}
+          url: ${{secrets.URL}}
