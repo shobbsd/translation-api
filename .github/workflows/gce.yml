@@ -6,9 +6,9 @@ on:
       - master
 
 jobs:
-  build:
+  Lint-and-test:
     runs-on: ubuntu-latest
-    name: Lint test
+    name: unit test
     steps:
       - uses: actions/checkout@v1
       - name: Use Node.js ${{ matrix.node-version }}
@@ -18,7 +18,9 @@ jobs:
       - name: npm install, build, and test
         run: |
           npm ci
-          npm test
+          npm test 
+          npm run lint
+          npm run test:e2e
         env:
           CI: true
           apikey: ${{secrets.API_KEY}}
