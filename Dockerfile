@@ -1,9 +1,19 @@
 FROM node:13.3-alpine
 
-COPY package*.json .
+WORKDIR /app
 
-RUN npm install --save-prod
+COPY package*.json ./
 
-COPY dist/ .
+RUN npm install --production
 
-CMD [ "node", "./dist/main.js" ]
+COPY dist/ ./
+
+RUN ls
+
+ARG apikey
+ENV apikey=$apikey
+
+ARG url
+ENV url=$url
+
+CMD [ "node", "./main.js" ]
