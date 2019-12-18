@@ -8,7 +8,7 @@ RUN npm install --production
 
 COPY dist/ ./
 
-RUN ls
+EXPOSE 3000
 
 ARG apikey
 ENV apikey=$apikey
