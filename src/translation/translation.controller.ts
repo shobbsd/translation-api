@@ -5,6 +5,7 @@ import {
   ValidationPipe,
   Post,
   HttpCode,
+  HttpException,
 } from '@nestjs/common';
 import { WatsonService } from './watson.service';
 import { TranslationDto } from './translation.dto';
@@ -45,12 +46,20 @@ export class TranslationController {
     translationDto: TranslationDto,
   ) {
     const { text, from, to } = translationDto;
-    const {
-      word_count,
-      character_count,
-      translations,
-    } = await this.watsonService.fetchTranslation(text, from, to);
-    const translation = translations[0].translation;
-    return { word_count, character_count, translation };
+    try {
+      const {
+        word_count,
+        character_count,
+        translations,
+      } = await this.watsonService.fetchTranslation(text, from, to);
+      const translation = translations[0].translation;
+      return { word_count, character_count, translation };
+    } catch (err) {
+      if (err.message === 'Model not found.')
+        throw new HttpException(
+          `Translation model "${from}" to "${to}" does not exist`,
+          404,
+        );
+    }
   }
 }
